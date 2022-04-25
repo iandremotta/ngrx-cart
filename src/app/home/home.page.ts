@@ -1,4 +1,7 @@
+import { CartModel } from 'src/app/models/cart.model';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  cart$: Observable<[]>;
 
-  constructor() {}
+  constructor(private store: Store<{ cart: [] }>) {
+    this.cart$ = store.pipe(select('cart'));
+  }
 
 }
